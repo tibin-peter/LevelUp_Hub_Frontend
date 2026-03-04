@@ -8,6 +8,18 @@ const api = axios.create({
   },
 });
 
+// Request interceptor: Attach token if available (cookie fallback)
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("levelHubToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 api.interceptors.response.use(
   (res) => res,
   async (err) => {
@@ -16,13 +28,22 @@ api.interceptors.response.use(
     if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        // Go backend reads refresh_token from cookies, so no body needed
-        await axios.post(
+        const refreshToken = localStorage.getItem("levelHubRefreshToken");
+        
+        // Go backend reads refresh_token from cookies OR body
+        const response = await axios.post(
           `${api.defaults.baseURL}/auth/refresh`,
-          {},
+          { refreshToken },
           { withCredentials: true },
         );
-        return api(originalRequest);
+
+        if (response.data.success) {
+          const { accessToken, refreshToken: newRefresh } = response.data.data;
+          if (accessToken) localStorage.setItem("levelHubToken", accessToken);
+          if (newRefresh) localStorage.setItem("levelHubRefreshToken", newRefresh);
+          
+          return api(originalRequest);
+        }
       } catch (refreshErr) {
         localStorage.clear();
         window.location.href = "/login";

@@ -104,6 +104,7 @@ export default function Login() {
                 placeholder="Enter your email"
                 onChange={handleChange}
                 required
+                autocomplete="email"
                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb619] transition-all"
               />
             </div>
@@ -118,6 +119,7 @@ export default function Login() {
                 placeholder="Enter your password"
                 onChange={handleChange}
                 required
+                autocomplete="current-password"
                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb619] transition-all"
               />
             </div>

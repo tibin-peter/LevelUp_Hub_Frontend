@@ -41,6 +41,8 @@ export const AuthProvider = ({ children }) => {
           permissions: data.permissions || data.Permissions || [],
         };
 
+        if (data.accessToken) localStorage.setItem("levelHubToken", data.accessToken);
+        if (data.refreshToken) localStorage.setItem("levelHubRefreshToken", data.refreshToken);
         localStorage.setItem("levelHubUser", JSON.stringify(sessionUser));
         setUser(sessionUser);
         return sessionUser;
@@ -70,6 +72,8 @@ export const AuthProvider = ({ children }) => {
         profilePicURL,
         permissions: data.permissions || data.Permissions || [],
       };
+      if (data.accessToken) localStorage.setItem("levelHubToken", data.accessToken);
+      if (data.refreshToken) localStorage.setItem("levelHubRefreshToken", data.refreshToken);
       localStorage.setItem("levelHubUser", JSON.stringify(sessionUser));
       setUser(sessionUser);
       return sessionUser;

@@ -95,7 +95,6 @@ export default function Register() {
 
           <form
             onSubmit={handleSubmit}
-            autoComplete="off"
             className="space-y-3"
           >
             <div>
@@ -107,6 +106,7 @@ export default function Register() {
                 onChange={handleChange}
                 type="text"
                 required
+                autocomplete="name"
                 placeholder="Enter your name"
                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb619]"
               />
@@ -122,6 +122,7 @@ export default function Register() {
                   onChange={handleChange}
                   type="email"
                   required
+                  autocomplete="email"
                   placeholder="Enter email"
                   className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb619]"
                 />
@@ -159,6 +160,7 @@ export default function Register() {
                 onChange={handleChange}
                 type="password"
                 required
+                autocomplete="new-password"
                 placeholder="Create password"
                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb619]"
               />
