@@ -7,12 +7,13 @@ export const uploadToCloudinary = async (file) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "levelup_preset"); 
-    formData.append("cloud_name", "dyszupync");
+    formData.append("upload_preset", "levelup_preset");
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "dyszupync";
+    formData.append("cloud_name", cloudName);
 
     try {
         const response = await fetch(
-            `https://api.cloudinary.com/v1_1/dyszupync/image/upload`,
+            `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
             {
                 method: "POST",
                 body: formData,
