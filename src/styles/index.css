@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", "sans-serif";
+  --font-body: "Plus Jakarta Sans", "sans-serif";
+}
+
+@layer base {
+  html {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FAFAFA; /* Premium off-white background */
+    color: #1A1A1A;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E5E5E5; 
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4D4D4; 
+  }
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-[#262626] text-white font-bold py-3 px-6 rounded-xl hover:bg-[#FF9500] hover:shadow-lg hover:shadow-[#FF9500]/20 transition-all duration-300 active:scale-95;
+    }
+    
+    .card-premium {
+      @apply bg-white border border-gray-100 rounded-[32px] shadow-[0_2px_20px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)];
+    }
+}
