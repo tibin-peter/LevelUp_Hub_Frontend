@@ -16,7 +16,7 @@ export default function ConnectedMentors() {
     const getImageUrl = (url) => {
         if (!url) return null;
         if (url.startsWith('http') || url.startsWith('data:')) return url;
-        const apiBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+        const apiBase = import.meta.env.VITE_API_BASE_URL || "https://levelup-hub-backend.onrender.com/api";
         return `${apiBase}/${url}`;
     };
 

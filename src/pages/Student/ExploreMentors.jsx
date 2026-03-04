@@ -16,7 +16,7 @@ export default function ExploreMentors() {
   const getImageUrl = (url) => {
     if (!url) return null;
     if (url.startsWith('http') || url.startsWith('data:')) return url;
-    const apiBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+    const apiBase = import.meta.env.VITE_API_BASE_URL || "https://levelup-hub-backend.onrender.com/api";
     return `${apiBase}/${url}`;
   };
 
@@ -27,6 +27,9 @@ export default function ExploreMentors() {
   useEffect(() => {
     async function fetchData() {
       try {
+        // Ensure axios base URL is set, falling back to production Render URL if not explicitly configured
+        api.defaults.baseURL = api.defaults.baseURL || "https://levelup-hub-backend.onrender.com/api";
+
         const [mentorsRes, favsRes] = await Promise.all([
           api.get("/mentors"),
           getMyFavorites()

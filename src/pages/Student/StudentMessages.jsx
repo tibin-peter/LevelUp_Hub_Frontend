@@ -66,7 +66,7 @@ export default function StudentMessages() {
         );
         if (isMounted) setMessages(Array.isArray(res.data) ? res.data : []);
 
-        const baseURL = api.defaults.baseURL || "http://localhost:8080";
+        const baseURL = api.defaults.baseURL || "https://levelup-hub-backend.onrender.com/api";
         const wsBase = baseURL.replace(/^http/, "ws");
         const wsUrl = `${wsBase}/messages/ws/${activeConv.conversation_id || activeConv.ConversationID}`;
 
